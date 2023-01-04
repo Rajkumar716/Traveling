@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "781145876900",
+    "project_id": "traveldb-77400",
+    "storage_bucket": "traveldb-77400.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:781145876900:android:f2a56a665701105125b931",
+        "android_client_info": {
+          "package_name": "com.example.travel_providers_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "781145876900-rlf6e5b595l5qa3kr4108d5blrgvnst4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBMIu3TaXpshKxSslquxX0SGFqS62un_68"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "781145876900-rlf6e5b595l5qa3kr4108d5blrgvnst4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
