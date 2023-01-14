@@ -23,6 +23,7 @@ class ADDPACKAGE extends StatefulWidget {
 class _ADDPACKAGEState extends State<ADDPACKAGE> {
   final GlobalKey<FormState> _formkey=GlobalKey<FormState>();
   TextEditingController packagenamecontroller= TextEditingController();
+  TextEditingController placename= TextEditingController();
   TextEditingController hotelname= TextEditingController();
   TextEditingController person_count= TextEditingController();
   TextEditingController traveling_days= TextEditingController();
@@ -86,6 +87,7 @@ class _ADDPACKAGEState extends State<ADDPACKAGE> {
       {
         "providerid":sharedPreferences?.getString("uid"),
         "packagename":packagenamecontroller.text.trim(),
+        "place_name":placename.text,
         "providername":sharedPreferences?.getString("name"),
         "person_count":person_count.text,
         "days_count":traveling_days.text,
@@ -104,86 +106,108 @@ class _ADDPACKAGEState extends State<ADDPACKAGE> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.amber[300],
         title: Text("ADD NEW PACKAGE"),
         centerTitle: true,
-      ),body: SingleChildScrollView(
-        child: Container(
-          child: Padding(
-            padding: EdgeInsets.all(10),
-            child: Column(
+        leading: BackButton(
+          onPressed: (){
+            Navigator.push(context, MaterialPageRoute(builder: (context)=>ProviderHome()));
+          },
+        ),
+      ),body: Container(
+      decoration: BoxDecoration(
+
+          image: DecorationImage(
+              image: AssetImage("images/provider_dash.jpg"),
+              fit: BoxFit.cover
+
+          )
+      ),
+        child: SingleChildScrollView(
+          child: Container(
+            child: Padding(
+              padding: EdgeInsets.all(10),
+              child: Column(
 
 
-              children: [
-                SizedBox(height: 10,),
-                InkWell(
-                  onTap: (){
-                    _getimage();
-                  },
-                  child: CircleAvatar(
-                    radius: MediaQuery.of(context).size.width  * 0.20,
-                    backgroundColor: Colors.cyan,
-                    backgroundImage:imagefile==null ? null:FileImage(File(imagefile!.path)) ,
-                    child: imagefile==null ? Icon(
-                      Icons.add_photo_alternate,
-                      size:MediaQuery.of(context).size.width * 0.20 ,
-                      color: Colors.grey,
-                    ):null,
+                children: [
+                  SizedBox(height: 10,),
+                  InkWell(
+                    onTap: (){
+                      _getimage();
+                    },
+                    child: CircleAvatar(
+                      radius: MediaQuery.of(context).size.width  * 0.20,
+                      backgroundColor: Colors.cyan,
+                      backgroundImage:imagefile==null ? null:FileImage(File(imagefile!.path)) ,
+                      child: imagefile==null ? Icon(
+                        Icons.add_photo_alternate,
+                        size:MediaQuery.of(context).size.width * 0.20 ,
+                        color: Colors.grey,
+                      ):null,
+                    ),
                   ),
-                ),
-                SizedBox(height: 10,),
-                Form(
-                  key: _formkey,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        CustomTextFields(
-                          data: Icons.backpack,
-                          controller: packagenamecontroller,
-                          isObsecure: false,
-                          hinttext: "Enter Package Name",
-                        ),
-                        CustomTextFields(
-                          data: Icons.hotel,
-                          controller: hotelname,
-                          isObsecure: false,
-                          hinttext: "Enter Hotel Name",
-                        ),
-                        CustomTextFields(
-                          data: Icons.countertops,
-                          controller: person_count,
-                          isObsecure: false,
-                          hinttext: "Enter Person Count",
-                        ),
-                        CustomTextFields(
-                          data: Icons.calendar_view_day,
-                          controller: traveling_days,
-                          isObsecure: false,
-                          hinttext: "Enter Days Count",
-                        ),
-                        CustomTextFields(
-                          data: Icons.travel_explore,
-                          controller: vehicle_type,
-                          isObsecure: false,
-                          hinttext: "Enter Vehicle type",
-                        ),
-                        CustomTextFields(
-                          data: Icons.price_change,
-                          controller: package_price,
-                          isObsecure: false,
-                          hinttext: "Enter Package Price",
-                        ),
-                      ],
-                    )),
-                SizedBox(height: 10,),
-                ElevatedButton(onPressed: (){
-                   formValidation();
-                }, child: Text("Add New Package"))
+                  SizedBox(height: 10,),
+                  Form(
+                    key: _formkey,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          CustomTextFields(
+                            data: Icons.backpack,
+                            controller: packagenamecontroller,
+                            isObsecure: false,
+                            hinttext: "Enter Package Name",
+                          ),
+                          CustomTextFields(
+                            data: Icons.place,
+                            controller: placename,
+                            isObsecure: false,
+                            hinttext: "Enter Place Name",
+                          ),
+                          CustomTextFields(
+                            data: Icons.hotel,
+                            controller: hotelname,
+                            isObsecure: false,
+                            hinttext: "Enter Hotel Name",
+                          ),
+                          CustomTextFields(
+                            data: Icons.countertops,
+                            controller: person_count,
+                            isObsecure: false,
+                            hinttext: "Enter Person Count",
+                          ),
+                          CustomTextFields(
+                            data: Icons.calendar_view_day,
+                            controller: traveling_days,
+                            isObsecure: false,
+                            hinttext: "Enter Days Count",
+                          ),
+                          CustomTextFields(
+                            data: Icons.travel_explore,
+                            controller: vehicle_type,
+                            isObsecure: false,
+                            hinttext: "Enter Vehicle type",
+                          ),
+                          CustomTextFields(
+                            data: Icons.price_change,
+                            controller: package_price,
+                            isObsecure: false,
+                            hinttext: "Enter Package Price",
+                          ),
+                        ],
+                      )),
+                  SizedBox(height: 10,),
+                  ElevatedButton(onPressed: (){
+                     formValidation();
+                  }, child: Text("Add New Package"))
 
-              ],
+                ],
+              ),
             ),
           ),
-        ),
     ),
+      ),
     );
   }
 }

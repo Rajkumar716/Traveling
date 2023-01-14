@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:travel_providers_app/Common_access/choose_account.dart';
 import 'package:travel_providers_app/authentication/Register.dart';
 import 'package:travel_providers_app/authentication/login.dart';
 import 'package:travel_providers_app/customer_screens/customer_login.dart';
@@ -19,7 +20,13 @@ class _CustomerAuthState extends State<CustomerAuth> {
       length: 2,
       child: Scaffold(
         appBar: AppBar(
+          backgroundColor: Colors.amber[500],
           automaticallyImplyLeading: false,
+          leading: BackButton(
+            onPressed: (){
+              Navigator.push(context, MaterialPageRoute(builder: (context)=>ChooseAccount()));
+            },
+          ),
           title: Text("Customer's",
             style: TextStyle(
                 fontSize: 20,

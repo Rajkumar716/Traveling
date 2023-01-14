@@ -23,6 +23,7 @@ class _ChooseAccountState extends State<ChooseAccount> {
         backgroundColor: Colors.amber[300],
         title:Text("CHOOSE ACCOUNT"),
         centerTitle: true,
+        automaticallyImplyLeading: false,
       ),
       body: Container(
         height: 700,

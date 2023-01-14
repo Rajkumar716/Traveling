@@ -4,6 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:travel_providers_app/customer_screens/customer_home.dart';
+import 'package:travel_providers_app/customer_screens/cutomer_forget_password.dart';
 
 import '../Common_access/Common.dart';
 import '../widgets/custom_textFeilds.dart';
@@ -82,52 +83,68 @@ class _Customer_loginState extends State<Customer_login> {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-        child: Column(
-          mainAxisSize: MainAxisSize.max,
-          children: [
-            Container(
-              alignment: Alignment.bottomCenter,
+    return Container(
+      decoration: BoxDecoration(
+          image: DecorationImage(
+              image: AssetImage("images/customer_login.jpg"),
+              fit: BoxFit.cover)),
+      child: SingleChildScrollView(
+          child: Column(
+            mainAxisSize: MainAxisSize.max,
+            children: [
+              Container(
+                alignment: Alignment.bottomCenter,
 
-              child: Padding(
-                padding: EdgeInsets.all(15),
-                child:CircleAvatar(
-                  radius: MediaQuery.of(context).size.width * 0.20,
-                  backgroundImage: AssetImage("images/customer_login.jpg"),
+                child: Padding(
+                  padding: EdgeInsets.all(15),
+                  child:CircleAvatar(
+                    radius: MediaQuery.of(context).size.width * 0.20,
+                    backgroundImage: AssetImage("images/lock.jpg"),
+                  ),
                 ),
               ),
-            ),
-            SizedBox(height: 10,),
-            Form(
-              key: _formkey,
-              child: Column(
-                children: [
-                  CustomTextFields(
-                    data:Icons.email,
-                    controller: emailcontroller,
-                    isObsecure: false,
-                    hinttext: "Enter the Email",
-                  ),
-                  CustomTextFields(
-                    data:Icons.lock,
-                    controller: passwordcontroller,
-                    isObsecure: true,
-                    hinttext: "Enter the Password",
-                  )
-                ],
+              SizedBox(height: 10,),
+              Form(
+                key: _formkey,
+                child: Column(
+                  children: [
+                    CustomTextFields(
+                      data:Icons.email,
+                      controller: emailcontroller,
+                      isObsecure: false,
+                      hinttext: "Enter the Email",
+                    ),
+                    CustomTextFields(
+                      data:Icons.lock,
+                      controller: passwordcontroller,
+                      isObsecure: true,
+                      hinttext: "Enter the Password",
+                    ),
+                    Row(mainAxisAlignment: MainAxisAlignment.center,
+                        children:[ TextButton(onPressed: (){
+                          Navigator.push(context, MaterialPageRoute(builder: (context)=>CustomerForegetPassword()));
+                        }, child: Text("Forget Password?",style: TextStyle(fontSize: 20,color: Colors.white,),))
+                        ]
+                    )
+                  ],
+                ),
               ),
-            ),
-            SizedBox(height: 10,),
-            Container(
-              width: 200,
-              height: 60,
-              child:ElevatedButton(onPressed: (){
-                formvalidation();
-              }, child: Text("Login",style: TextStyle(color: Colors.white),)) ,
-            ),
+              SizedBox(height: 10,),
+              Container(
+                width: 200,
+                height: 60,
+                child:ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.amber[500]
+                    ),
+                    onPressed: (){
+                  formvalidation();
+                }, child: Text("Login",style: TextStyle(color: Colors.white),)) ,
+              ),
 
-          ],
-        )
+            ],
+          )
+      ),
     );
   }
 }

@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:travel_providers_app/Common_access/Common.dart';
+import 'package:travel_providers_app/provider_screens/forget_password.dart';
 import 'package:travel_providers_app/provider_screens/home.dart';
 import 'package:travel_providers_app/widgets/custom_textFeilds.dart';
 import 'package:travel_providers_app/widgets/error_dialog.dart';
@@ -80,52 +81,68 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Column(
-        mainAxisSize: MainAxisSize.max,
-        children: [
-          Container(
-            alignment: Alignment.bottomCenter,
+    return Container(
+      decoration: BoxDecoration(
+          image: DecorationImage(
+              image: AssetImage("images/provider_reply.jpg"),
+              fit: BoxFit.cover)),
+      child: SingleChildScrollView(
+        child: Column(
+          mainAxisSize: MainAxisSize.max,
+          children: [
+            Container(
+              alignment: Alignment.bottomCenter,
 
-            child: Padding(
-              padding: EdgeInsets.all(15),
-              child:CircleAvatar(
-                radius: MediaQuery.of(context).size.width * 0.20,
-                backgroundImage: AssetImage("images/login.jpg"),
+              child: Padding(
+                padding: EdgeInsets.all(15),
+                child:CircleAvatar(
+                  radius: MediaQuery.of(context).size.width * 0.20,
+                  backgroundImage: AssetImage("images/login.jpg"),
+                ),
               ),
             ),
-          ),
-          SizedBox(height: 10,),
-          Form(
-            key: _formkey,
-            child: Column(
-              children: [
-                CustomTextFields(
-                  data:Icons.email,
-                  controller: emailcontroller,
-                  isObsecure: false,
-                  hinttext: "Enter the Email",
-                ),
-                CustomTextFields(
-                  data:Icons.lock,
-                  controller: passwordcontroller,
-                  isObsecure: true,
-                  hinttext: "Enter the Password",
-                )
-              ],
+            SizedBox(height: 10,),
+            Form(
+              key: _formkey,
+              child: Column(
+                children: [
+                  CustomTextFields(
+                    data:Icons.email,
+                    controller: emailcontroller,
+                    isObsecure: false,
+                    hinttext: "Enter the Email",
+                  ),
+                  CustomTextFields(
+                    data:Icons.lock,
+                    controller: passwordcontroller,
+                    isObsecure: true,
+                    hinttext: "Enter the Password",
+                  ),
+                  Row(mainAxisAlignment: MainAxisAlignment.center,
+                    children:[ TextButton(onPressed: (){
+                          Navigator.push(context, MaterialPageRoute(builder: (context)=>ForGetPassword()));
+                    }, child: Text("Forget Password?",style: TextStyle(fontSize: 20,color: Colors.black,),))
+                    ]
+                  )
+                ],
+              ),
             ),
-          ),
-          SizedBox(height: 10,),
-          Container(
-            width: 200,
-            height: 60,
-            child:ElevatedButton(onPressed: (){
-              Formvalidation();
-            }, child: Text("Login",style: TextStyle(color: Colors.white),)) ,
-          ),
+            SizedBox(height: 10,),
+            Container(
+              width: 200,
+              height: 60,
+              child:ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.amber[500]
+                ),
+                  onPressed: (){
+                Formvalidation();
+              }, child: Text("Login",style: TextStyle(color: Colors.white),)) ,
+            ),
 
-        ],
-      )
+          ],
+        )
+      ),
     );
   }
 }

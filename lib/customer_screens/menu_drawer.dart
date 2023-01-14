@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:travel_providers_app/Common_access/Common.dart';
 
+import 'package:travel_providers_app/customer_screens/customer_change_password.dart';
+import 'package:travel_providers_app/customer_screens/customer_update_profile.dart';
+import 'package:travel_providers_app/customer_screens/view_accepted_request.dart';
+import 'package:travel_providers_app/customer_screens/view_send_request.dart';
+
 class CustomerDrawer extends StatelessWidget {
   const CustomerDrawer({Key? key}) : super(key: key);
 
@@ -37,11 +42,20 @@ class CustomerDrawer extends StatelessWidget {
               ),
             ),
           ),
+          SizedBox(height: 8,),
           ListTile(
             leading: Icon(Icons.person),
             title: Text("ProFile",style: TextStyle(fontSize: 15),),
             onTap: (){
-
+              Navigator.push(context, MaterialPageRoute(builder: (context)=>CustomerUpdateProfile()));
+            },
+          ),
+          SizedBox(height: 5,),
+          ListTile(
+            leading: Icon(Icons.password),
+            title: Text("Change Password",style: TextStyle(fontSize: 15),),
+            onTap: (){
+              Navigator.push(context, MaterialPageRoute(builder: (context)=>CustomerChangePassword()));
             },
           ),
           SizedBox(height: 5,),
@@ -49,17 +63,19 @@ class CustomerDrawer extends StatelessWidget {
             leading: Icon(Icons.view_array),
             title: Text("View Send Request",style: TextStyle(fontSize: 15),),
             onTap: (){
-
+                Navigator.push(context, MaterialPageRoute(builder: (context)=>ViewSendRequest()));
             },
           ),
           SizedBox(height: 5,),
           ListTile(
             leading: Icon(Icons.view_array),
-            title: Text("View Accept Request",style: TextStyle(fontSize: 15),),
+            title: Text("View Provider Reply",style: TextStyle(fontSize: 15),),
             onTap: (){
-
+              Navigator.push(context, MaterialPageRoute(builder: (context)=>ViewAcceptedRequest()));
             },
           ),
+          SizedBox(height: 5,),
+
 
         ],
       ),

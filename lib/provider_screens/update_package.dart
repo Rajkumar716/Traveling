@@ -13,12 +13,12 @@ import 'package:firebase_storage/firebase_storage.dart' as fstorage;
 
 
 class UpdatePackage extends StatefulWidget {
- String packagename,packageid,placename,price,days,person,vehicle,packimage;
+ String packagename,packageid,placename,price,days,person,vehicle,packimage,place_name;
  UpdatePackage({required this.packagename,required this.packageid,required this.placename,required this.days,
-   required this.person,required this.vehicle,required this.price,required this.packimage});
+   required this.person,required this.vehicle,required this.price,required this.packimage,required this.place_name});
 
   @override
-  State<UpdatePackage> createState() => _UpdatePackageState(packagename,packageid,placename,price,days,person,vehicle,packimage);
+  State<UpdatePackage> createState() => _UpdatePackageState(packagename,packageid,placename,price,days,person,vehicle,packimage,place_name);
 }
 
 class _UpdatePackageState extends State<UpdatePackage> {
@@ -29,9 +29,10 @@ class _UpdatePackageState extends State<UpdatePackage> {
   TextEditingController traveling_days= TextEditingController();
   TextEditingController vehicle_type= TextEditingController();
   TextEditingController package_price= TextEditingController();
+  TextEditingController placecontroller= TextEditingController();
 
- String packagename,packageid,placename,price,days,person,vehicle,packimage;
- _UpdatePackageState(this.packagename,this.packageid,this.placename,this.price,this.days,this.person,this.vehicle,this.packimage);
+ String packagename,packageid,placename,price,days,person,vehicle,packimage,place_name;
+ _UpdatePackageState(this.packagename,this.packageid,this.placename,this.price,this.days,this.person,this.vehicle,this.packimage,this.place_name);
 
   XFile? imagefile;
   final ImagePicker _picker=ImagePicker();
@@ -95,7 +96,8 @@ class _UpdatePackageState extends State<UpdatePackage> {
               "packageimage":packageimageurl,
               "packagename":packagenamecontroller.text.trim(),
               "person_count":person_count.text,
-              "vehicletype":vehicle_type.text
+              "vehicletype":vehicle_type.text,
+              "place_name":placecontroller.text
 
 
             });
@@ -112,6 +114,7 @@ class _UpdatePackageState extends State<UpdatePackage> {
     traveling_days.text=days;
     vehicle_type.text=vehicle;
     package_price.text=price;
+    placecontroller.text=place_name;
 
 
 
@@ -121,10 +124,19 @@ class _UpdatePackageState extends State<UpdatePackage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.amber[300],
         title: Text("Update Package"),
         centerTitle: true,
       ),body: SingleChildScrollView(
       child: Container(
+        decoration: BoxDecoration(
+
+            image: DecorationImage(
+                image: AssetImage("images/update package.jpg"),
+                fit: BoxFit.cover
+
+            )
+        ),
         child: Padding(
           padding: EdgeInsets.all(10),
           child: Column(
@@ -152,6 +164,12 @@ class _UpdatePackageState extends State<UpdatePackage> {
                      controller: packagenamecontroller,
                      isObsecure: false,
                      hinttext: "Enter the Package Name",
+                   ),
+                   CustomTextFields(
+                     data: Icons.place,
+                     controller: placecontroller,
+                     isObsecure: false,
+                     hinttext: "Enter the Place Name",
                    ),
                    CustomTextFields(
                      data: Icons.hotel,
@@ -184,9 +202,13 @@ class _UpdatePackageState extends State<UpdatePackage> {
                      hinttext: "Enter Package Price",
                    ),
                    SizedBox(height: 10,),
-                   ElevatedButton(onPressed: (){
+                   ElevatedButton(
+                       style: ElevatedButton.styleFrom(
+                           backgroundColor: Colors.amber[700]
+                       ),
+                       onPressed: (){
                           formValidation();
-                   }, child: Text("UpDate Package"))
+                   }, child: Text("UpDate Package Details",style: TextStyle(fontSize: 20),))
 
                  ],
                ),)

@@ -146,82 +146,92 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Container(
-        child: Column(
-          mainAxisSize: MainAxisSize.max,
-          children: [
-            SizedBox(height: 10,),
-             InkWell(
-               onTap: (){
-                 _getimage();
-               },
-               child: CircleAvatar(
-                 radius: MediaQuery.of(context).size.width  * 0.20,
-                 backgroundColor: Colors.cyan,
-                 backgroundImage:imagefile==null ? null:FileImage(File(imagefile!.path)) ,
-                 child: imagefile==null ? Icon(
-                   Icons.add_photo_alternate,
-                   size:MediaQuery.of(context).size.width * 0.20 ,
-                   color: Colors.grey,
-                 ):null,
+    return Container(
+      decoration: BoxDecoration(
+          image: DecorationImage(
+              image: AssetImage("images/provider_dash.jpg"),
+              fit: BoxFit.cover)),
+      child: SingleChildScrollView(
+        child: Container(
+          child: Column(
+            mainAxisSize: MainAxisSize.max,
+            children: [
+              SizedBox(height: 10,),
+               InkWell(
+                 onTap: (){
+                   _getimage();
+                 },
+                 child: CircleAvatar(
+                   radius: MediaQuery.of(context).size.width  * 0.20,
+                   backgroundColor: Colors.cyan,
+                   backgroundImage:imagefile==null ? null:FileImage(File(imagefile!.path)) ,
+                   child: imagefile==null ? Icon(
+                     Icons.add_photo_alternate,
+                     size:MediaQuery.of(context).size.width * 0.20 ,
+                     color: Colors.grey,
+                   ):null,
+                 ),
                ),
-             ),
-            SizedBox(height: 10,),
-            Form(
-              key: _formkey,
-              child: Padding(
-                padding: EdgeInsets.all(10),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    CustomTextFields(
-                      data: Icons.person,
-                      controller: namecontroller,
-                      isObsecure: false,
-                      hinttext: "Enter Username",
-                    ),
-                    CustomTextFields(
-                      data: Icons.email,
-                      controller: emailcontroller,
-                      isObsecure: false,
-                      hinttext: "Enter Email",
-                    ),
-                    CustomTextFields(
-                      data: Icons.password,
-                      controller: passwordcontroller,
-                      isObsecure: true,
-                      hinttext: "Enter Password",
-                    ),  CustomTextFields(
-                      data: Icons.password,
-                      controller: confirmpasscontroller,
-                      isObsecure: true,
-                      hinttext: "Enter Confirm Password",
-                    ),  CustomTextFields(
-                      data: Icons.phone,
-                      controller: phonecontroller,
-                      isObsecure: false,
-                      hinttext: "Enter Phone Number",
-                    ),
-                    CustomTextFields(
-                      data: Icons.location_city,
-                      controller: locationcontroller,
-                      isObsecure: false,
-                      hinttext: "Enter location",
-                      enablde: true,
-                    ),
+              SizedBox(height: 10,),
+              Form(
+                key: _formkey,
+                child: Padding(
+                  padding: EdgeInsets.all(10),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      CustomTextFields(
+                        data: Icons.person,
+                        controller: namecontroller,
+                        isObsecure: false,
+                        hinttext: "Enter Username",
+                      ),
+                      CustomTextFields(
+                        data: Icons.email,
+                        controller: emailcontroller,
+                        isObsecure: false,
+                        hinttext: "Enter Email",
+                      ),
+                      CustomTextFields(
+                        data: Icons.password,
+                        controller: passwordcontroller,
+                        isObsecure: true,
+                        hinttext: "Enter Password",
+                      ),  CustomTextFields(
+                        data: Icons.password,
+                        controller: confirmpasscontroller,
+                        isObsecure: true,
+                        hinttext: "Enter Confirm Password",
+                      ),  CustomTextFields(
+                        data: Icons.phone,
+                        controller: phonecontroller,
+                        isObsecure: false,
+                        hinttext: "Enter Phone Number",
+                      ),
+                      CustomTextFields(
+                        data: Icons.location_city,
+                        controller: locationcontroller,
+                        isObsecure: false,
+                        hinttext: "Enter location",
+                        enablde: true,
+                      ),
 
 
-                  ],
+                    ],
+                  ),
                 ),
               ),
-            ),
-            SizedBox(height: 10,),
-            ElevatedButton(onPressed: (){
-              formValidation();
-            }, child: Text("Sign Up"))
 
-          ],
+              ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.amber[500]
+                  ),
+                  onPressed: (){
+                formValidation();
+              }, child: Text("REGISTER"))
+
+            ],
+          ),
         ),
       ),
     );
